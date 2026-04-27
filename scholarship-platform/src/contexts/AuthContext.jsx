@@ -18,25 +18,44 @@ export function AuthProvider({ children }) {
   const login = async (email, password, role) => {
     setIsLoading(true);
 
-    // Mock authentication - replace with real API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
 
-    // Mock users
-    const mockUsers = {
-      'admin@scholarship.com': { id: 1, email: 'admin@scholarship.com', role: 'admin', name: 'Admin User' },
-      'student@scholarship.com': { id: 2, email: 'student@scholarship.com', role: 'student', name: 'John Doe' }
-    };
+      if (!response.ok) {
+        throw new Error('Invalid credentials');
+      }
 
-    const user = mockUsers[email];
-    if (user && password === 'password' && user.role === role) {
+      const data = await response.json();
+      
+      // Map the backend role (e.g., ROLE_ADMIN) to what the frontend expects ('admin')
+      const normalizedRole = data.role === 'ROLE_ADMIN' ? 'admin' : 'student';
+
+      if (normalizedRole !== role) {
+        throw new Error('Invalid role selected');
+      }
+
+      const user = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        role: normalizedRole,
+        token: data.token
+      };
+
       setUser(user);
       localStorage.setItem('user', JSON.stringify(user));
       setIsLoading(false);
       return { success: true };
+    } catch (error) {
+      setIsLoading(false);
+      return { success: false, error: error.message };
     }
-
-    setIsLoading(false);
-    return { success: false, error: 'Invalid credentials' };
   };
 
   const logout = () => {

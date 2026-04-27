@@ -40,7 +40,10 @@ public class ApplicationService {
         Application application = new Application();
         application.setStudent(student);
         application.setScholarship(scholarship);
-        application.setStatementOfPurpose(request.getStatementOfPurpose());
+        application.setGpaAtTime(request.getGpa());
+        application.setEssayTopic(request.getEssayTopic());
+        application.setDocumentsUrl(request.getDocumentsUrl());
+        application.setAgreeToTerms(request.getAgreeToTerms());
         application.setStatus(ApplicationStatus.PENDING);
 
         return applicationRepository.save(application);

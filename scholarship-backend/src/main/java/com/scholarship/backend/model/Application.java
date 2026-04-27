@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,8 +29,21 @@ public class Application {
     @Column(nullable = false)
     private ApplicationStatus status = ApplicationStatus.PENDING;
 
-    private LocalDateTime appliedAt = LocalDateTime.now();
+    @Column(name = "gpa_at_time")
+    private Double gpaAtTime;
+
+    @Column(name = "essay_topic", columnDefinition = "TEXT")
+    private String essayTopic;
+
+    @Column(name = "documents_url", columnDefinition = "TEXT")
+    private String documentsUrl;
+
+    @Column(name = "agree_to_terms")
+    private Boolean agreeToTerms = true;
+
+    @Column(name = "applied_date")
+    private LocalDate appliedDate = LocalDate.now();
     
-    @Column(length = 1000)
-    private String statementOfPurpose;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

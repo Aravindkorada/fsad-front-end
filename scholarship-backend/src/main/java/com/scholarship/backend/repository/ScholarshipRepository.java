@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ScholarshipRepository extends JpaRepository<Scholarship, Long> {
-    List<Scholarship> findByIsActiveTrue();
+    List<Scholarship> findByStatus(String status);
     
-    @Query("SELECT s FROM Scholarship s WHERE LOWER(s.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(s.eligibilityCriteria) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    @Query("SELECT s FROM Scholarship s WHERE LOWER(s.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(s.eligibility) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Scholarship> searchScholarships(@Param("keyword") String keyword);
 }

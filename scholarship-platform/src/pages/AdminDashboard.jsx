@@ -32,9 +32,11 @@ const AdminDashboard = () => {
   // Filter and sort scholarships
   const filteredScholarships = scholarships
     .filter(scholarship => {
-      const matchesSearch = scholarship.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          scholarship.provider.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          scholarship.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const searchTarget = searchTerm.toLowerCase();
+      const titleMatch = (scholarship.title || scholarship.name || '').toLowerCase().includes(searchTarget);
+      const providerMatch = (scholarship.provider || '').toLowerCase().includes(searchTarget);
+      const descMatch = (scholarship.description || '').toLowerCase().includes(searchTarget);
+      const matchesSearch = titleMatch || providerMatch || descMatch;
       const matchesStatus = filterStatus === 'all' || scholarship.status === filterStatus;
       return matchesSearch && matchesStatus;
     })
@@ -60,9 +62,12 @@ const AdminDashboard = () => {
   // Filter applications
   const filteredApplications = applications
     .filter(application => {
-      const matchesSearch = application.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          application.scholarshipName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          application.studentEmail.toLowerCase().includes(searchTerm.toLowerCase());
+      const searchTarget = searchTerm.toLowerCase();
+      const studentMatch = (application.studentName || '').toLowerCase().includes(searchTarget);
+      const scholarshipMatch = (application.scholarshipName || '').toLowerCase().includes(searchTarget);
+      const emailMatch = (application.studentEmail || '').toLowerCase().includes(searchTarget);
+      
+      const matchesSearch = studentMatch || scholarshipMatch || emailMatch;
       const matchesStatus = filterStatus === 'all' || application.status === filterStatus;
       return matchesSearch && matchesStatus;
     });
@@ -110,8 +115,8 @@ const AdminDashboard = () => {
   const handleEdit = (scholarship) => {
     setEditingScholarship(scholarship);
     setFormData({
-      name: scholarship.name,
-      provider: scholarship.provider,
+      name: scholarship.title || scholarship.name,
+      provider: scholarship.provider || '',
       amount: scholarship.amount.toString(),
       deadline: scholarship.deadline,
       description: scholarship.description,
@@ -328,7 +333,7 @@ const AdminDashboard = () => {
                       <tr key={scholarship.id}>
                         <td className="scholarship-name">
                           <div className="name-content">
-                            <strong>{scholarship.name}</strong>
+                            <strong>{scholarship.title || scholarship.name}</strong>
                             <small>{scholarship.category}</small>
                           </div>
                         </td>

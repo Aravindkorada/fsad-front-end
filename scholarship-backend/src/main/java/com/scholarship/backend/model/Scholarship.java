@@ -19,15 +19,31 @@ public class Scholarship {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private String provider;
+
+    private String category;
+
+    @Column(nullable = false)
+    private Double amount;
+
     @Column(length = 2000)
     private String description;
 
-    private Double amount;
-    
-    private String eligibilityCriteria;
+    @Column(columnDefinition = "TEXT")
+    private String fullDescription;
+
+    @Column(columnDefinition = "TEXT")
+    private String requirements;
+
+    @Column(columnDefinition = "TEXT")
+    private String eligibility;
 
     private LocalDate deadline;
     
-    @Column(name = "is_active")
-    private Boolean isActive = true;
+    @Column(name = "status")
+    private String status = "ACTIVE";
+    
+    @Column(name = "created_by")
+    private Long createdBy;
 }

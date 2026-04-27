@@ -21,11 +21,15 @@ public class ScholarshipService {
     public Scholarship updateScholarship(Long id, Scholarship scholarshipDetails) {
         Scholarship scholarship = getScholarshipById(id);
         scholarship.setTitle(scholarshipDetails.getTitle());
-        scholarship.setDescription(scholarshipDetails.getDescription());
+        scholarship.setProvider(scholarshipDetails.getProvider());
+        scholarship.setCategory(scholarshipDetails.getCategory());
         scholarship.setAmount(scholarshipDetails.getAmount());
-        scholarship.setEligibilityCriteria(scholarshipDetails.getEligibilityCriteria());
+        scholarship.setDescription(scholarshipDetails.getDescription());
+        scholarship.setFullDescription(scholarshipDetails.getFullDescription());
+        scholarship.setRequirements(scholarshipDetails.getRequirements());
+        scholarship.setEligibility(scholarshipDetails.getEligibility());
         scholarship.setDeadline(scholarshipDetails.getDeadline());
-        scholarship.setIsActive(scholarshipDetails.getIsActive());
+        scholarship.setStatus(scholarshipDetails.getStatus());
         return scholarshipRepository.save(scholarship);
     }
 
@@ -39,7 +43,7 @@ public class ScholarshipService {
     }
 
     public List<Scholarship> getActiveScholarships() {
-        return scholarshipRepository.findByIsActiveTrue();
+        return scholarshipRepository.findByStatus("ACTIVE");
     }
 
     public Scholarship getScholarshipById(Long id) {

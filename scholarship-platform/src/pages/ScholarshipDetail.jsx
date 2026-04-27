@@ -116,7 +116,10 @@ export const ScholarshipDetail = () => {
         <Card className="detail-card">
           <div className="detail-header">
             <div>
-              <h1 className="detail-title">{scholarship.title || scholarship.name}</h1>
+              <div className="header-text">
+                <h1>{scholarship.title || scholarship.name}</h1>
+                <p className="provider">{scholarship.provider}</p>
+              </div>
               <p className="detail-description">{scholarship.fullDescription || scholarship.description}</p>
             </div>
             <div className="detail-amount">${scholarship.amount.toLocaleString()}</div>

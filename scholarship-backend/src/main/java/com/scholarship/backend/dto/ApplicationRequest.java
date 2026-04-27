@@ -9,6 +9,14 @@ public class ApplicationRequest {
     @NotNull
     private Long scholarshipId;
 
+    @NotNull
+    private Double gpa;
+
     @NotBlank
-    private String statementOfPurpose;
+    private String essayTopic;
+
+    private String documentsUrl;
+
+    @NotNull
+    private Boolean agreeToTerms;
 }
