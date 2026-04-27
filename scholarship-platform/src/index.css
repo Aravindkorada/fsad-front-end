@@ -1,0 +1,123 @@
+/* src/index.css */
+/* Premium design tokens */
+:root {
+  --font-primary: 'Inter', sans-serif;
+  --bg-gradient: linear-gradient(135deg, hsl(210, 30%, 12%), hsl(260, 30%, 18%));
+  --card-bg: rgba(255, 255, 255, 0.12);
+  --card-blur: 12px;
+  --card-radius: 12px;
+  --primary-color: hsl(210, 80%, 60%);
+  --secondary-color: hsl(260, 80%, 60%);
+  --text-light: #f0f0f0;
+  --text-dark: #111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+}
+
+/* Navigation bar */
+.nav-bar {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.nav-link:hover {
+  background: var(--card-bg);
+  backdrop-filter: blur(var(--card-blur));
+  color: var(--primary-color);
+}
+
+/* Card container for student dashboard */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Scholarship Card */
+.scholarship-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(var(--card-blur));
+  border-radius: var(--card-radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.scholarship-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.scholarship-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.scholarship-description {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+.apply-button {
+  align-self: flex-start;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.apply-button:hover {
+  background: hsl(210, 80%, 55%);
+  transform: scale(1.05);
+}
+.apply-button.applied {
+  background: var(--secondary-color);
+  cursor: default;
+}
+
+/* Admin Dashboard placeholder */
+.admin-dashboard {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(var(--card-blur));
+  border-radius: var(--card-radius);
+}

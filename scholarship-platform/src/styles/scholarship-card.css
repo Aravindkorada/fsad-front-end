@@ -1,0 +1,104 @@
+/* Scholarship Card Styles */
+
+.scholarship-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.scholarship-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.scholarship-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.scholarship-card-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: 1.4;
+}
+
+.scholarship-amount {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.scholarship-card-body {
+  flex: 1;
+}
+
+.scholarship-category {
+  margin-bottom: var(--spacing-md);
+}
+
+.category-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.scholarship-description {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.scholarship-deadline {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--text-sm);
+}
+
+.scholarship-deadline .label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.scholarship-deadline .value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.scholarship-card-footer {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-light);
+}
+
+.scholarship-view-btn,
+.scholarship-apply-btn {
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 768px) {
+  .scholarship-card {
+    gap: var(--spacing-sm);
+  }
+
+  .scholarship-card-header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .scholarship-amount {
+    align-self: flex-start;
+  }
+}
