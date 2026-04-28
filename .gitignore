@@ -2,3 +2,6 @@
 .vscode/
 .idea/
 .DS_Store
+index.js
+.env
+scholarship-platform/.env
